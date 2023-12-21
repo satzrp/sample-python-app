@@ -1,10 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Clone Repo') {
             steps {
                 checkout scm
-                sh "echo code checkedout"
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                sh "docker build -t web:1.0 ."
             }
         }
     }
